@@ -199,6 +199,7 @@ group by c.CountryName
 order by HighestPeakElevation desc,LongestRiverLength desc,CountryName
 
 --Problem 18.	* Highest Peak Name and Elevation by Country
+SELECT TOP 5 A.* FROM(
 SELECT
   c.CountryName AS [Country],
   p.PeakName AS [Highest Peak Name],
@@ -216,7 +217,7 @@ WHERE p.Elevation =
      LEFT JOIN Peaks p ON p.MountainId = m.Id
    WHERE c.CountryCode = mc.CountryCode)
 UNION
-SELECT
+SELECT 
   c.CountryName AS [Country],
   '(no highest peak)' AS [Highest Peak Name],
   0 AS [Highest Peak Elevation],
@@ -232,7 +233,8 @@ WHERE
      LEFT JOIN Mountains m ON m.Id = mc.MountainId
      LEFT JOIN Peaks p ON p.MountainId = m.Id
    WHERE c.CountryCode = mc.CountryCode) IS NULL
-ORDER BY c.CountryName, [Highest Peak Name]
+   )AS A
+ORDER BY [Country], [Highest Peak Name]
 
 
 
