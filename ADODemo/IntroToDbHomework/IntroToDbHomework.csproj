@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="02GetVillainsName.cs" />
+    <Compile Include="03GetMinionNames.cs" />
+    <Compile Include="04AddMinion.cs" />
+    <Compile Include="05ChangeTownNamesCasing.cs" />
+    <Compile Include="06RemoveVillain.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -49,10 +54,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CheckTownExist.sql" />
+    <Content Include="CheckVillainExist.sql" />
     <Content Include="FindMinionNamesForVillainId.sql" />
     <Content Include="FindAllVillainsNames.sql" />
     <Content Include="FindVillainName.sql" />
     <Content Include="InitialMinionDB.sql" />
+    <Content Include="InsertMinion.sql" />
+    <Content Include="InsertMinionToVillian.sql" />
+    <Content Include="InsertTown.sql" />
+    <Content Include="InsertVillain.sql" />
+    <Content Include="MinionIdByName.sql" />
+    <Content Include="TownIdByName.sql" />
+    <Content Include="VillianIdByName.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
