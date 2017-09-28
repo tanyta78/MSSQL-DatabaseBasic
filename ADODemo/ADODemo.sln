@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabAdo", "LabAdo\LabAdo.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework", "Homework\Homework.csproj", "{5313487D-CBAE-404D-85D9-F78E62EEE9E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroToDbHomework", "IntroToDbHomework\IntroToDbHomework.csproj", "{48F56C15-D3D4-4F1C-8130-9A1AC845A7C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5313487D-CBAE-404D-85D9-F78E62EEE9E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5313487D-CBAE-404D-85D9-F78E62EEE9E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5313487D-CBAE-404D-85D9-F78E62EEE9E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48F56C15-D3D4-4F1C-8130-9A1AC845A7C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F56C15-D3D4-4F1C-8130-9A1AC845A7C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F56C15-D3D4-4F1C-8130-9A1AC845A7C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F56C15-D3D4-4F1C-8130-9A1AC845A7C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

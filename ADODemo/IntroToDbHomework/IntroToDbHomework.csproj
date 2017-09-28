@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5313487D-CBAE-404D-85D9-F78E62EEE9E1}</ProjectGuid>
+    <ProjectGuid>{48F56C15-D3D4-4F1C-8130-9A1AC845A7C3}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Homework</RootNamespace>
-    <AssemblyName>Homework</AssemblyName>
+    <RootNamespace>IntroToDbHomework</RootNamespace>
+    <AssemblyName>IntroToDbHomework</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -49,11 +49,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CheckVilianExist.sql" />
-    <Content Include="MinionsVilians.sql" />
-    <Content Include="FindMinions.sql" />
-    <Content Include="CheckTownExist.sql" />
-    <Content Include="VilianNameById.sql" />
+    <Content Include="FindMinionNamesForVillainId.sql" />
+    <Content Include="FindAllVillainsNames.sql" />
+    <Content Include="FindVillainName.sql" />
+    <Content Include="InitialMinionDB.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

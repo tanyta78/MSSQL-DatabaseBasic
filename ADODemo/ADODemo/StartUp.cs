@@ -2,63 +2,187 @@
 {
     using System;
     using System.Data.SqlClient;
-   
-    class StartUp
+    using System.Linq;
+
+    public class StartUp
     {
-        static void Main()
+      public static void Main()
         {
-            SqlConnection dbCon = new SqlConnection(@"
-                Server=.;
-                Database=SoftUni;
-                Integrated Security=true");
+           
 
-            dbCon.Open();
-            
-            Console.WriteLine("Enter town name:");
-            string townName = Console.ReadLine();
+           //Window initialization ;
+           
+            Console.WindowHeight = 17;
+            Console.WindowWidth = 50;
+            Console.BufferHeight = 17;
+            Console.BufferWidth = 50;
 
-            using (dbCon)
-            {
-                //ExecuteScalar()
-                string query = "SELECT COUNT(*) AS Count FROM Employees";
-                SqlCommand cmd = new SqlCommand(query,dbCon);
-                Console.WriteLine("Number of employees: {0}",cmd.ExecuteScalar());
-
-                //ExecuteReader()
-                string query2 = "SELECT * FROM Employees";
-                SqlCommand cmd2=new SqlCommand(query2,dbCon);
-                var reader = cmd.ExecuteReader();
-
-                using (reader)
-                {
-                  //  reader.Read();//чете по редове това е първия ред
-                   // Console.WriteLine(reader[0]);//а така извикваме първата колонка
-                   // reader.FieldCount => column count
-                   // reader.GetName(0);= col name
-                    while (reader.Read())
-                    {
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            
-                            Console.Write(reader[i]);
-                        }
-                        Console.WriteLine();
-                    }
-                }
-
-                //ExecuteNonQuery();
-                string query3 = $"INSERT INTO Towns VALUES('{townName}')";
-                var cmd3=new SqlCommand(query3,dbCon);
-
-              int affected = cmd3.ExecuteNonQuery();//връща броя редове които са засегнати
-
-
-                //use parameters to protect from sql injection
-                string query4 = $"INSERT INTO Towns VALUES(@TownName)";
-                var cmd4 = new SqlCommand(query4, dbCon);
-                cmd4.Parameters.AddWithValue("@TownName", townName);
-            }
+            //db init
+            var context = new SoftUniEntities();
+            ListAll(context);
 
         }
+
+        static void ListAll(SoftUniEntities context)
+        {
+            var pageSize = 14;
+
+           var projects= context.Projects.ToList();
+            int page = 0;
+            int maxPages = (int)Math.Ceiling(projects.Count /(double) pageSize);
+            int pointer = 1;
+
+
+            while (true)
+            {
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Clear();
+                Console.WriteLine($"ID   |   Project name (Page {page+1} of {maxPages})");
+                Console.WriteLine("===================================");
+
+                int currenr = 1;
+                foreach (var project in projects.Skip(pageSize*page).Take(pageSize))
+                {
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    if (currenr==pointer)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                    }
+
+                    Console.WriteLine($"{project.ProjectID,4} |{project.Name}");
+                    currenr++;
+                }
+               
+                var key = Console.ReadKey();
+                switch (key.Key.ToString())
+                {
+                    case "Enter":
+                      var currentProject=  projects.Skip(pageSize * page + pointer - 1).First();
+                        ShowDetails(currentProject);
+                        break;
+                    case "UpArrow":
+                        if (pointer > 1)
+                        {
+                            pointer--;
+                        }
+                        else if (page > 0)
+                        {
+                            page--;
+                            pointer = pageSize;
+                        }
+                        break;
+                    case "DownArrow":
+                        if (pointer < pageSize)
+                        {
+                            pointer++;
+                        }
+                        else if (page + 1 <= maxPages)
+                        {
+                            page++;
+                            pointer = 1;
+                        }
+                        break;
+                    case "Escape":return;
+                }
+               
+                
+            }
+           
+        }
+
+        static void ShowDetails(Project project)
+        {
+            //------------------------------------------
+            Console.Clear();
+            Console.WriteLine($"ID: {project.ProjectID,4}   |  Name {project.Name} ");
+            Utility.PrintHLine();
+            Console.WriteLine($"Description:{project.Description}");
+            Utility.PrintHLine();
+            Console.WriteLine($"{project.StartDate,-24} |   {project.EndDate}");
+            Utility.PrintHLine();
+            Console.WriteLine($"(Page )");
+            Console.WriteLine("===================================");
+            var pageSize = 16-Console.CursorTop;
+
+            var emploeeys = project.Employees.ToList();
+            int page = 0;
+            int maxPages = (int)Math.Ceiling(emploeeys.Count / (double)pageSize);
+            int pointer = 1;
+            
+            while (true)
+            {
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Clear();
+                
+                Console.WriteLine($"ID: {project.ProjectID,4}   |  Name: {project.Name} ");
+                Utility.PrintHLine();
+                Console.WriteLine($"Description:{project.Description}");
+                Utility.PrintHLine();
+                Console.WriteLine($"{project.StartDate,-24} |   {project.EndDate}");
+                Utility.PrintHLine();
+                Console.WriteLine($"(Page {page + 1} of {maxPages})");
+                Console.WriteLine("===================================");
+
+                int currenr = 1;
+                foreach (var emp in emploeeys.Skip(pageSize * page).Take(pageSize))
+                {
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    if (currenr == pointer)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                    }
+
+                    Console.WriteLine($"{emp.FirstName,4} |{emp.LastName}");
+                    currenr++;
+                }
+
+                var key = Console.ReadKey();
+                switch (key.Key.ToString())
+                {
+                   /* case "Enter":
+                        var currentProject = emploeeys.Skip(pageSize * page + pointer - 1).First();
+                        ShowDetails(currentProject);
+                        break;*/
+                    case "UpArrow":
+                        if (pointer > 1)
+                        {
+                            pointer--;
+                        }
+                        else if (page > 0)
+                        {
+                            page--;
+                            pointer = pageSize;
+                        }
+                        break;
+                    case "DownArrow":
+                        if (pointer < pageSize)
+                        {
+                            pointer++;
+                        }
+                        else if (page + 1 <= maxPages)
+                        {
+                            page++;
+                            pointer = 1;
+                        }
+                        break;
+                    case "Escape": return;
+                }
+
+
+            }
+            //=================================
+
+            
+        }
+
+       
     }
 }
