@@ -146,3 +146,20 @@ CREATE PROC usp_AssignProject(@EmployeeID INT, @ProjectID INT) AS
 
 	COMMIT
 
+--problem8
+ALTER TABLE departments 
+DROP FOREIGN KEY fk_departments_employees;
+ALTER TABLE departments 
+DROP INDEX fk_departments_employees ;
+ALTER TABLE employees_projects 
+DROP FOREIGN KEY fk_employees_projects_employees;
+ALTER TABLE employees 
+DROP FOREIGN KEY fk_employees_employees;
+
+DELETE FROM employees
+WHERE department_id IN 
+    (SELECT d.department_id FROM departments AS d 
+     WHERE d.name IN ('Production', 'Production Control'));
+DELETE FROM departments 
+WHERE
+    name IN ('Production' , 'Production Control');

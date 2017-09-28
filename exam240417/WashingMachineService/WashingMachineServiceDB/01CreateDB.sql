@@ -1,0 +1,98 @@
+CREATE DATABASE WMS
+
+CREATE TABLE Clients
+(
+ClientId INT IDENTITY(1,1) NOT NULL,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+Phone VARCHAR(12) NOT NULL,
+CONSTRAINT PK_Clients PRIMARY KEY (ClientId),
+CONSTRAINT CHK_Clients CHECK (LEN(Phone)=12)
+)
+
+CREATE TABLE Mechanics
+(
+MechanicId INT IDENTITY(1,1) NOT NULL,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+Address VARCHAR(255) NOT NULL,
+CONSTRAINT PK_Mechanics PRIMARY KEY (MechanicId)
+)
+
+CREATE TABLE Models
+(
+ModelId INT IDENTITY(1,1) NOT NULL,
+Name VARCHAR(50) NOT NULL UNIQUE,
+CONSTRAINT PK_Models PRIMARY KEY (ModelId)
+)
+
+CREATE TABLE Jobs
+(
+JobId INT IDENTITY(1,1) NOT NULL,
+ModelId INT NOT NULL,
+Status VARCHAR(11) NOT NULL DEFAULT 'Pending',
+ClientId INT NOT NULL,
+MechanicId INT ,
+IssueDate Date NOT NULL,
+FinishDate Date ,
+CONSTRAINT PK_Jobs PRIMARY KEY (JobId),
+CONSTRAINT FK_Jobs_Models FOREIGN KEY (ModelId) REFERENCES Models(ModelId),
+CONSTRAINT FK_Jobs_Clients FOREIGN KEY (ClientId) REFERENCES Clients(ClientId),
+CONSTRAINT FK_Jobs_Mechanics FOREIGN KEY (MechanicId) REFERENCES Mechanics(MechanicId),
+CONSTRAINT CHK_Jobs CHECK (Status in ('Pending','In Progress','Finished'))
+)
+
+CREATE TABLE Orders
+(
+OrderId INT NOT NULL IDENTITY(1,1),
+JobId INT NOT NULL,
+IssueDate Date ,
+Delivered bit DEFAULT 0,
+CONSTRAINT PK_Orders PRIMARY KEY (OrderId),
+CONSTRAINT FK_Orders_Jobs FOREIGN KEY (JobId) REFERENCES Jobs(JobId),
+)
+
+CREATE TABLE Vendors
+(
+VendorId INT IDENTITY(1,1) NOT NULL,
+Name VARCHAR(50) NOT NULL UNIQUE,
+CONSTRAINT PK_Vendors PRIMARY KEY (VendorId)
+)
+
+CREATE TABLE Parts
+(
+PartId INT IDENTITY(1,1) NOT NULL,
+SerialNumber VARCHAR(50) UNIQUE NOT NULL,
+Description VARCHAR(255),
+Price Money NOT NULL,
+VendorId INT NOT NULL,
+StockQty INT NOT NULL DEFAULT 0,
+CONSTRAINT PK_Parts PRIMARY KEY (PartId),
+CONSTRAINT CHK_Parts_Price CHECK (Price>0),
+CONSTRAINT CHK_Parts_StockQty CHECK (StockQty>=0),
+CONSTRAINT FK_Parts_Vendors FOREIGN KEY (VendorId) REFERENCES Vendors(VendorId)
+)
+
+CREATE TABLE OrderParts
+(
+PartId INT NOT NULL,
+OrderId INT NOT NULL,
+Quantity INT NOT NULL DEFAULT 1,
+CONSTRAINT PK_OrderParts PRIMARY KEY (OrderId,PartId),
+CONSTRAINT FK_OrderParts_Parts FOREIGN KEY (PartId) REFERENCES Parts(PartId),
+CONSTRAINT FK_OrderParts_Orders FOREIGN KEY (OrderId) REFERENCES Orders(OrderId),
+CONSTRAINT CHK_OrderParts_Quantity CHECK (Quantity>0)
+)
+
+
+
+CREATE TABLE PartsNeeded
+(
+PartId INT NOT NULL,
+JobId INT NOT NULL,
+Quantity INT NOT NULL DEFAULT 1,
+CONSTRAINT PK_PartsNeeded PRIMARY KEY (JobId,PartId),
+CONSTRAINT FK_PartsNeeded_Parts FOREIGN KEY (PartId) REFERENCES Parts(PartId),
+CONSTRAINT FK_PartsNeeded_Jobs FOREIGN KEY (JobId) REFERENCES Jobs(JobId),
+CONSTRAINT CHK_PartsNeeded_Quantity CHECK (Quantity>0)
+)

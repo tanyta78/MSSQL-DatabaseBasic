@@ -9,12 +9,20 @@ FROM [Games] as g
 WHERE YEAR(g.[Start]) BETWEEN 2011 AND 2012
 ORDER BY g.[Start],[Name]
 
+SELECT TOP(50)
+		[Name],
+		FORMAT(Start, 'yyyy-MM-dd') AS Start
+FROM Games
+WHERE YEAR(Start)=2011 OR YEAR(Start)=2012
+ORDER BY Start,Name
+
 --Problem 13.	 User Email Providers
 SELECT 
 	Username,
 	SUBSTRING(Email,CHARINDEX('@',Email)+1,LEN(Email)-CHARINDEX('@',Email)) as [Email Provider]
 FROM Users
 ORDER BY [Email Provider],Username
+
 
 --Problem 14.	 Get Users with IPAdress Like Pattern
 SELECT Username,IpAddress

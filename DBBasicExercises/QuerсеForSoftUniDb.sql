@@ -108,3 +108,13 @@ WHERE DepartmentID=1 OR DepartmentID=2 OR DepartmentID=4 OR DepartmentID=11
 
 SELECT Salary
 FROM Employees
+
+UPDATE Employees
+SET Salary=Salary*1.12
+WHERE DepartmentID IN
+(SELECT Departments.DepartmentID
+FROM Employees
+JOIN Departments ON Employees.DepartmentID=Departments.DepartmentID
+WHERE Departments.Name IN ('Engineering', 'Tool Design', 'Marketing','Information Services'))
+SELECT Salary
+FROM Employees
