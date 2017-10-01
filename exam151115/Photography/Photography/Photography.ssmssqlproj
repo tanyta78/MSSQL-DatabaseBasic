@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WashingMachineServiceDB">
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Photography">
   <Items>
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
       <Items>
         <ConnectionNode Name="DESKTOP-LAHCAG9\SQLEXPRESS:DESKTOP-LAHCAG9\PC1">
-          <Created>2017-09-26T23:48:36.3779251+03:00</Created>
+          <Created>2017-09-30T20:15:21.7278797+03:00</Created>
           <Type>SQL</Type>
           <Server>DESKTOP-LAHCAG9\SQLEXPRESS</Server>
           <UserName />
@@ -19,131 +19,89 @@
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
-        <FileNode Name="01. DDL_Dataset.sql">
+        <FileNode Name="01AlbumNameAndDesription.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>01. DDL_Dataset.sql</FullPath>
+          <FullPath>01AlbumNameAndDesription.sql</FullPath>
         </FileNode>
-        <FileNode Name="01CreateDB.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>01CreateDB.sql</FullPath>
-        </FileNode>
-        <FileNode Name="02Insert.sql">
+        <FileNode Name="02PhotographsAndAlbums.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>02Insert.sql</FullPath>
+          <FullPath>02PhotographsAndAlbums.sql</FullPath>
         </FileNode>
-        <FileNode Name="03Update.sql">
+        <FileNode Name="03PhotoWithCatAndAuthor.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>03Update.sql</FullPath>
+          <FullPath>03PhotoWithCatAndAuthor.sql</FullPath>
         </FileNode>
-        <FileNode Name="04Delete.sql">
+        <FileNode Name="04UsersBornInJan.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>04Delete.sql</FullPath>
+          <FullPath>04UsersBornInJan.sql</FullPath>
         </FileNode>
-        <FileNode Name="05ClientsByName.sql">
+        <FileNode Name="05PhotoWithEquipment.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>05ClientsByName.sql</FullPath>
+          <FullPath>05PhotoWithEquipment.sql</FullPath>
         </FileNode>
-        <FileNode Name="06JobStatus.sql">
+        <FileNode Name="06MostExpensivePhoto.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>06JobStatus.sql</FullPath>
+          <FullPath>06MostExpensivePhoto.sql</FullPath>
         </FileNode>
-        <FileNode Name="07MechanicAssignmets.sql">
+        <FileNode Name="07PriceLargerThanAvg.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>07MechanicAssignmets.sql</FullPath>
+          <FullPath>07PriceLargerThanAvg.sql</FullPath>
         </FileNode>
-        <FileNode Name="08CurrentClients.sql">
+        <FileNode Name="08TotalPriceOfLens.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>08CurrentClients.sql</FullPath>
+          <FullPath>08TotalPriceOfLens.sql</FullPath>
         </FileNode>
-        <FileNode Name="09MechanicPerformance.sql">
+        <FileNode Name="09UsersWithOldCam.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>09MechanicPerformance.sql</FullPath>
+          <FullPath>09UsersWithOldCam.sql</FullPath>
         </FileNode>
-        <FileNode Name="10HardEarners.sql">
+        <FileNode Name="10LensPerType.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>10HardEarners.sql</FullPath>
+          <FullPath>10LensPerType.sql</FullPath>
         </FileNode>
-        <FileNode Name="11AvailableMechanics.sql">
+        <FileNode Name="11SortUsers.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>11AvailableMechanics.sql</FullPath>
+          <FullPath>11SortUsers.sql</FullPath>
         </FileNode>
-        <FileNode Name="12PartsCost.sql">
+        <FileNode Name="12ManufWithoutProducts.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>12PartsCost.sql</FullPath>
+          <FullPath>12ManufWithoutProducts.sql</FullPath>
         </FileNode>
-        <FileNode Name="13PastExpenses.sql">
+        <FileNode Name="13cAMERASrISE.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>13PastExpenses.sql</FullPath>
+          <FullPath>13cAMERASrISE.sql</FullPath>
         </FileNode>
-        <FileNode Name="14ModelRepairTime.sql">
+        <FileNode Name="photography-script.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>14ModelRepairTime.sql</FullPath>
-        </FileNode>
-        <FileNode Name="15FaultiestModel.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>15FaultiestModel.sql</FullPath>
-        </FileNode>
-        <FileNode Name="16MissingParts.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>16MissingParts.sql</FullPath>
-        </FileNode>
-        <FileNode Name="17CostOfOrder.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>17CostOfOrder.sql</FullPath>
-        </FileNode>
-        <FileNode Name="18PlaceOrder.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>18PlaceOrder.sql</FullPath>
-        </FileNode>
-        <FileNode Name="19DetectDelivery.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>19DetectDelivery.sql</FullPath>
-        </FileNode>
-        <FileNode Name="20VendorPreferences.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>20VendorPreferences.sql</FullPath>
+          <FullPath>photography-script.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>

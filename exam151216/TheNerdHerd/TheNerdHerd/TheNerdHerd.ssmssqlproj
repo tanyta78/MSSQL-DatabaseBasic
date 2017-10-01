@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
-<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WashingMachineServiceDB">
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="TheNerdHerd">
   <Items>
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
       <Items>
         <ConnectionNode Name="DESKTOP-LAHCAG9\SQLEXPRESS:DESKTOP-LAHCAG9\PC1">
-          <Created>2017-09-26T23:48:36.3779251+03:00</Created>
+          <Created>2017-10-01T09:50:50.8694317+03:00</Created>
           <Type>SQL</Type>
           <Server>DESKTOP-LAHCAG9\SQLEXPRESS</Server>
           <UserName />
           <Authentication>Windows Authentication</Authentication>
-          <InitialDB>WMS</InitialDB>
+          <InitialDB />
           <LoginTimeout>30</LoginTimeout>
           <ExecutionTimeout>0</ExecutionTimeout>
           <ConnectionProtocol>NotSpecified</ConnectionProtocol>
@@ -19,17 +19,11 @@
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
-        <FileNode Name="01. DDL_Dataset.sql">
+        <FileNode Name="01DatabaseDesign.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>01. DDL_Dataset.sql</FullPath>
-        </FileNode>
-        <FileNode Name="01CreateDB.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>01CreateDB.sql</FullPath>
+          <FullPath>01DatabaseDesign.sql</FullPath>
         </FileNode>
         <FileNode Name="02Insert.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
@@ -49,101 +43,95 @@
           <AssociatedConnUserName />
           <FullPath>04Delete.sql</FullPath>
         </FileNode>
-        <FileNode Name="05ClientsByName.sql">
+        <FileNode Name="05AgeRange.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>05ClientsByName.sql</FullPath>
+          <FullPath>05AgeRange.sql</FullPath>
         </FileNode>
-        <FileNode Name="06JobStatus.sql">
+        <FileNode Name="06Messages.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>06JobStatus.sql</FullPath>
+          <FullPath>06Messages.sql</FullPath>
         </FileNode>
-        <FileNode Name="07MechanicAssignmets.sql">
+        <FileNode Name="07Chats.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>07MechanicAssignmets.sql</FullPath>
+          <FullPath>07Chats.sql</FullPath>
         </FileNode>
-        <FileNode Name="08CurrentClients.sql">
+        <FileNode Name="08ChatMessages.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>08CurrentClients.sql</FullPath>
+          <FullPath>08ChatMessages.sql</FullPath>
         </FileNode>
-        <FileNode Name="09MechanicPerformance.sql">
+        <FileNode Name="09MessageCount.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>09MechanicPerformance.sql</FullPath>
+          <FullPath>09MessageCount.sql</FullPath>
         </FileNode>
-        <FileNode Name="10HardEarners.sql">
+        <FileNode Name="10Credentials.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>10HardEarners.sql</FullPath>
+          <FullPath>10Credentials.sql</FullPath>
         </FileNode>
-        <FileNode Name="11AvailableMechanics.sql">
+        <FileNode Name="11Locations.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>11AvailableMechanics.sql</FullPath>
+          <FullPath>11Locations.sql</FullPath>
         </FileNode>
-        <FileNode Name="12PartsCost.sql">
+        <FileNode Name="12LeftUsers.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>12PartsCost.sql</FullPath>
+          <FullPath>12LeftUsers.sql</FullPath>
         </FileNode>
-        <FileNode Name="13PastExpenses.sql">
+        <FileNode Name="13UsersInBg.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>13PastExpenses.sql</FullPath>
+          <FullPath>13UsersInBg.sql</FullPath>
         </FileNode>
-        <FileNode Name="14ModelRepairTime.sql">
+        <FileNode Name="14LastChat.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>14ModelRepairTime.sql</FullPath>
+          <FullPath>14LastChat.sql</FullPath>
         </FileNode>
-        <FileNode Name="15FaultiestModel.sql">
+        <FileNode Name="15Radians.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>15FaultiestModel.sql</FullPath>
+          <FullPath>15Radians.sql</FullPath>
         </FileNode>
-        <FileNode Name="16MissingParts.sql">
+        <FileNode Name="16ChangePassword.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>16MissingParts.sql</FullPath>
+          <FullPath>16ChangePassword.sql</FullPath>
         </FileNode>
-        <FileNode Name="17CostOfOrder.sql">
+        <FileNode Name="17SendMessage.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>17CostOfOrder.sql</FullPath>
+          <FullPath>17SendMessage.sql</FullPath>
         </FileNode>
-        <FileNode Name="18PlaceOrder.sql">
+        <FileNode Name="18LogMessages.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>18PlaceOrder.sql</FullPath>
+          <FullPath>18LogMessages.sql</FullPath>
         </FileNode>
-        <FileNode Name="19DetectDelivery.sql">
+        <FileNode Name="Data.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>19DetectDelivery.sql</FullPath>
-        </FileNode>
-        <FileNode Name="20VendorPreferences.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-LAHCAG9\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>DESKTOP-LAHCAG9\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>20VendorPreferences.sql</FullPath>
+          <FullPath>Data.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>

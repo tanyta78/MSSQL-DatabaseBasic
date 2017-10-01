@@ -47,6 +47,8 @@
     <Compile Include="04AddMinion.cs" />
     <Compile Include="05ChangeTownNamesCasing.cs" />
     <Compile Include="06RemoveVillain.cs" />
+    <Compile Include="07PrintAllMinions.cs" />
+    <Compile Include="09IncreaseAgeStoredProcedure.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,10 +1,10 @@
 SELECT 
-Jobs.JobId,
-SUM((Quantity*Price)) as Total
-FROM Jobs
-JOIN Orders ON Jobs.JobId=Orders.JobId
-JOIN OrderParts ON Orders.OrderId=OrderParts.OrderId
-JOIN Parts ON OrderParts.PartId=Parts.PartId
+J.JobId,
+ISNULL(SUM((Quantity*Price)),0.00) as Total
+FROM Orders AS o
+JOIN OrderParts as op ON o.OrderId=op.OrderId
+JOIN Parts ON op.PartId=Parts.PartId
+RIGHT JOIN Jobs AS J ON J.JobId=O.JobId
 WHERE Status='Finished'
-GROUP BY Jobs.JobId
-order by Total desc,JobId
+GROUP BY J.JobId
+order by Total desc,J.JobId
