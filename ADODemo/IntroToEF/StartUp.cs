@@ -12,22 +12,137 @@
 
             SoftuniContext context = new SoftuniContext();
 
-            // EmployeesFullInformation(context);
+            //03.EmployeesFullInformation(context);
 
-            //EmplFNAmeSalaryOver50000(context);
+            //04.EmplFNAmeSalaryOver50000(context);
 
-            //EmplFromResearchAndDev(context);
+            //05.EmplFromResearchAndDev(context);
 
-            //AddAddressToEmployee(context);
+            //06.AddAddressToEmployee(context);
 
-            // EmplProjFrom20012003(context);
+            // 07.EmplProjFrom20012003(context);
 
-            //AddressesByTownName(context);
+            //08.AddressesByTownName(context);
 
-            //Employee147(context);
+            //09.Employee147(context);
 
-            //DepWithMoreEmpl(context);
+            //10.DepWithMoreEmpl(context);
 
+            //11. FindLatest10Project(context);
+
+            //12. IncreaseSalaries(context);
+
+            //13. FindEmplStartWithSA(context);
+
+            //15.DeleteProjectById(context);
+
+           //16. RemoveTowns(context);
+
+        }
+
+        private static void RemoveTowns(SoftuniContext context)
+        {
+            var townName = Console.ReadLine();
+            var town = context.Towns.FirstOrDefault(t => t.Name == townName);
+
+            if (town == null)
+            {
+                Console.WriteLine("There isn't a town with that name in database");
+            }
+            else
+            {
+                var addressIds = context.Addresses
+                    .Where(a => a.TownID == town.TownID).ToList().Select(a => a.AddressID).ToList();
+
+                var employeeWithAdress = context.Employees
+                    .Where(e => addressIds.Contains((int)e.AddressID)).ToList();
+
+                foreach (var emp in employeeWithAdress)
+                {
+                    emp.AddressID = null;
+                }
+
+                foreach (var addressId in addressIds)
+                {
+                    context.Addresses.Remove(context.Addresses.FirstOrDefault(a => a.AddressID == addressId));
+                }
+
+                Console.WriteLine($"{addressIds.Count} addresses in {townName} were deleted");
+
+                context.Towns.Remove(town);
+
+                context.SaveChanges();
+            }
+        }
+
+        private static void DeleteProjectById(SoftuniContext context)
+        {
+            var project = context.Projects.FirstOrDefault(p => p.ProjectID == 2);
+
+
+            if (project != null)
+            {
+                var projectEmployees = project.Employees;
+
+                foreach (var emp in projectEmployees)
+                {
+                    emp.Projects.Remove(project);
+                }
+
+                context.Projects.Remove(project);
+                context.SaveChanges();
+            }
+
+            var projectsName = context.Projects
+                .Select(p => p.Name).Take(10).ToList();
+
+            foreach (var name in projectsName)
+            {
+                Console.WriteLine(name);
+            }
+        }
+
+        private static void FindEmplStartWithSA(SoftuniContext context)
+        {
+            var employees = context.Employees
+                .Where(e => e.FirstName.StartsWith("sa"));
+
+            foreach (var emp in employees)
+            {
+                Console.WriteLine($"{emp.FirstName} {emp.LastName} - {emp.JobTitle} - (${emp.Salary:f4})");
+            }
+        }
+
+        private static void IncreaseSalaries(SoftuniContext context)
+        {
+            var employees = context.Employees
+                            .Where(e => e.Department.Name == "Engineering" || e.Department.Name == "Tool Design" ||
+                                        e.Department.Name == "Marketing" || e.Department.Name == "Information Services");
+
+            foreach (var emp in employees)
+            {
+                emp.Salary *= 1.12m;
+            }
+
+            context.SaveChanges();
+
+            foreach (var e in employees)
+            {
+                Console.WriteLine($"{e.FirstName} {e.LastName} (${e.Salary:f6})");
+            }
+        }
+
+        private static void FindLatest10Project(SoftuniContext context)
+        {
+            var projects = context.Projects
+                            .OrderByDescending(p => p.StartDate)
+                            .Take(10)
+                            .OrderBy(p => p.Name);
+
+            foreach (var pr in projects)
+            {
+                Console.WriteLine($"{pr.Name} {pr.Description} {pr.StartDate:M/d/yyyy h:mm:ss tt} {pr.EndDate:M/d/yyyy h:mm:ss tt}");
+            }
         }
 
         private static void DepWithMoreEmpl(SoftuniContext context)
