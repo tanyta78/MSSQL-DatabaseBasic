@@ -23,6 +23,16 @@ INNER JOIN
 ON AH.Id = Balances.AccountHolderId
 END
 
+CREATE PROCEDURE usp_GetHoldersWithBalanceHigherThan (@number DECIMAL(19,4))
+AS
+BEGIN
+    SELECT ah.FirstName AS [First Name], ah.LastName AS [Last Name]
+      FROM AccountHolders AS ah
+      JOIN Accounts AS a ON ah.Id = a.AccountHolderId
+     GROUP BY ah.FirstName, ah.LastName
+    HAVING SUM(a.Balance) > @number
+END
+
 --Problem 12.	Future Value Function
 CREATE FUNCTION ufn_CalculateFutureValue(@Sum MONEY,@YearlyInterestRate FLOAT,@NumberOfYears INT)
 RETURNS DECIMAL(10,4)
