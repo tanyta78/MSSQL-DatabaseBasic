@@ -152,51 +152,58 @@ group by mc.CountryCode
 having mc.CountryCode in ('BG','RU','US')
 
 --Problem 14.	Countries with Rivers
-SELECT top(5)
-c.CountryName,
-r.RiverName
+
+SELECT TOP (5) c.CountryName,
+               r.RiverName
 FROM Countries AS c
-left JOIN CountriesRivers AS cr ON cr.CountryCode=c.CountryCode
-left JOIN Rivers AS r ON cr.RiverId=r.Id
-join Continents as cont on c.ContinentCode=cont.ContinentCode
-where cont.ContinentName='Africa'
-order by c.CountryName
+     LEFT JOIN CountriesRivers AS cr ON cr.CountryCode = c.CountryCode
+     LEFT JOIN Rivers AS r ON cr.RiverId = r.Id
+     JOIN Continents AS cont ON c.ContinentCode = cont.ContinentCode
+WHERE cont.ContinentName = 'Africa'
+ORDER BY c.CountryName;
 
 --Problem 15.	*Continents and Currencies
-SELECT
-  sel.ContinentCode,
-  sel.CurrencyCode AS CurrencyCode,
-  sel.CurrencyUs AS CurrencyUsage
-     FROM (SELECT c.ContinentCode,
-                  cr.CurrencyCode,
-                  COUNT(cr.Description) AS CurrencyUs,
-                  DENSE_RANK() over (partition by c.ContinentCode order by COUNT(cr.CurrencyCode) desc) as rankk
-             FROM  Currencies cr
-             JOIN Countries c ON cr.CurrencyCode = c.CurrencyCode
-             GROUP BY c.ContinentCode, cr.CurrencyCode
-             HAVING  COUNT(cr.Description) > 1) as sel
-where sel.rankk = 1 
-ORDER BY ContinentCode
+
+SELECT sel.ContinentCode,
+       sel.CurrencyCode AS CurrencyCode,
+       sel.CurrencyUs AS CurrencyUsage
+FROM
+(
+    SELECT c.ContinentCode,
+           cr.CurrencyCode,
+           COUNT(cr.Description) AS CurrencyUs,
+           DENSE_RANK() OVER(PARTITION BY c.ContinentCode ORDER BY COUNT(cr.CurrencyCode) DESC) AS rankk
+    FROM Currencies cr
+         JOIN Countries c ON cr.CurrencyCode = c.CurrencyCode
+    GROUP BY c.ContinentCode,
+             cr.CurrencyCode
+    HAVING COUNT(cr.Description) > 1
+) AS sel
+WHERE sel.rankk = 1
+ORDER BY ContinentCode;
 
 --Problem 16.	Countries without any Mountains
-select count(c.CountryCode)as CountryCode
-from Countries as c
-left join MountainsCountries as mc on c.CountryCode=mc.CountryCode
-where mc.MountainId is null
+
+SELECT COUNT(c.CountryCode) AS CountryCode
+FROM Countries AS c
+     LEFT JOIN MountainsCountries AS mc ON c.CountryCode = mc.CountryCode
+WHERE mc.MountainId IS NULL;
 
 
 --Problem 17.	Highest Peak and Longest River by Country
-select top(5)
-c.CountryName,
-max(p.Elevation) as HighestPeakElevation,
-max(r.Length) AS LongestRiverLength
-from Countries as c
-join MountainsCountries as mc on c.CountryCode=mc.CountryCode
-join Peaks as p on p.MountainId=mc.MountainId
-left join CountriesRivers as cr on c.CountryCode=cr.CountryCode
-left join Rivers as r on cr.RiverId=r.Id
-group by c.CountryName
-order by HighestPeakElevation desc,LongestRiverLength desc,CountryName
+
+SELECT TOP (5) c.CountryName,
+               MAX(p.Elevation) AS HighestPeakElevation,
+               MAX(r.Length) AS LongestRiverLength
+FROM Countries AS c
+     JOIN MountainsCountries AS mc ON c.CountryCode = mc.CountryCode
+     JOIN Peaks AS p ON p.MountainId = mc.MountainId
+     LEFT JOIN CountriesRivers AS cr ON c.CountryCode = cr.CountryCode
+     LEFT JOIN Rivers AS r ON cr.RiverId = r.Id
+GROUP BY c.CountryName
+ORDER BY HighestPeakElevation DESC,
+         LongestRiverLength DESC,
+         CountryName;
 
 --Problem 18.	* Highest Peak Name and Elevation by Country
 SELECT TOP 5 A.* FROM(
