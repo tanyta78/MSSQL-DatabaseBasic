@@ -12,32 +12,79 @@
 
             SoftuniContext context = new SoftuniContext();
 
-            //03.EmployeesFullInformation(context);
 
-            //04.EmplFNAmeSalaryOver50000(context);
+            //select with ef
+            var data = context.Employees.Select(e => new
+            {
+                Name = e.FirstName + " " + e.LastName,
+                TownName = e.Addresses.Town.Name
+            }).ToList();
 
-            //05.EmplFromResearchAndDev(context);
+            //join tables in ef
+            var employees = context.Employees.Join(
+                context.Departments,
+                (e => e.DepartmentID),
+                (d => d.DepartmentID),
+                (e,d)=> new
+            {
+                EmployeeName= e.FirstName + " " + e.LastName,
+                JobTitle = e.JobTitle,
+                Department = d.Name
+            }).ToList();
 
-            //06.AddAddressToEmployee(context);
+            //group by table
 
-            // 07.EmplProjFrom20012003(context);
+            var group = context.Employees.GroupBy(e => e.DepartmentID).Select(e => new AverigeSalariesByDepartment()
+            {
+                 DepartmentId = e.Key,
+                AverageSalary = e.Average(d => d.Salary)
+            }).ToList();
 
-            //08.AddressesByTownName(context);
+            foreach (var item in group)
+            {
+                PrintSalary(item);
+            }
 
-            //09.Employee147(context);
+            
 
-            //10.DepWithMoreEmpl(context);
+            /*  03.EmployeesFullInformation(context);
 
-            //11. FindLatest10Project(context);
+              04.EmplFNAmeSalaryOver50000(context);
 
-            //12. IncreaseSalaries(context);
+              05.EmplFromResearchAndDev(context);
 
-            //13. FindEmplStartWithSA(context);
+              06.AddAddressToEmployee(context);
 
-            //15.DeleteProjectById(context);
+               07.EmplProjFrom20012003(context);
 
-           //16. RemoveTowns(context);
+              08.AddressesByTownName(context);
 
+              09.Employee147(context);
+
+              10.DepWithMoreEmpl(context);
+
+              11. FindLatest10Project(context);
+
+              12. IncreaseSalaries(context);
+
+              13. FindEmplStartWithSA(context);
+
+              15.DeleteProjectById(context);
+
+              16. RemoveTowns(context);*/
+
+        }
+
+        public static void PrintSalary(AverigeSalariesByDepartment department)
+        {
+            Console.WriteLine($"{department.DepartmentId,4}|{department.AverageSalary}");
+        }
+
+        //view model
+        public class AverigeSalariesByDepartment
+        {
+            public int DepartmentId { get; set; }
+            public decimal AverageSalary { get; set; }
         }
 
         private static void RemoveTowns(SoftuniContext context)

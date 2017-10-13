@@ -1,8 +1,9 @@
 namespace Chirper.Migrations
 {
     using System.Data.Entity.Migrations;
+    using Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Chirper.ChirperContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ChirperContext>
     {
         public Configuration()
         {
@@ -10,8 +11,15 @@ namespace Chirper.Migrations
             ContextKey = "Chirper.ChirperContext";
         }
 
-        protected override void Seed(Chirper.ChirperContext context)
+        protected override void Seed(ChirperContext context)
         {
+            var cmt = new User()
+            {
+                Alias = "Pesho"
+            };
+
+            context.Users.AddOrUpdate(u=>u.Alias,cmt);
+            context.SaveChanges();
         }
     }
 }

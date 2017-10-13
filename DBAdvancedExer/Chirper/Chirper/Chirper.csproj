@@ -88,6 +88,14 @@
     <Compile Include="Migrations\201710130848330_AddComments1.Designer.cs">
       <DependentUpon>201710130848330_AddComments1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710131043573_AddedFriends.cs" />
+    <Compile Include="Migrations\201710131043573_AddedFriends.Designer.cs">
+      <DependentUpon>201710131043573_AddedFriends.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710131133537_AddedTownsPeople.cs" />
+    <Compile Include="Migrations\201710131133537_AddedTownsPeople.Designer.cs">
+      <DependentUpon>201710131133537_AddedTownsPeople.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelConfigurations\ChImgConfiguration.cs" />
     <Compile Include="ModelConfigurations\ChirpConfiguration.cs" />
@@ -97,8 +105,11 @@
     <Compile Include="Models\ChImg.cs" />
     <Compile Include="Models\Chirp.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\Town.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="MyInitializer.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -133,6 +144,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710130848330_AddComments1.resx">
       <DependentUpon>201710130848330_AddComments1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131043573_AddedFriends.resx">
+      <DependentUpon>201710131043573_AddedFriends.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131133537_AddedTownsPeople.resx">
+      <DependentUpon>201710131133537_AddedTownsPeople.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,6 +11,6 @@
 
        public string TagRef { get; set; }
 
-        public ICollection<Chirp> Chirps { get; set; }
+        public virtual ICollection<Chirp> Chirps { get; set; }
     }
 }

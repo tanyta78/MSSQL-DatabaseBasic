@@ -13,6 +13,15 @@
                 .IsUnicode(false);
 
            this.Ignore(u => u.CurrentSessionId);
+
+            this.HasMany(u => u.FriendRequestsMade)
+                .WithMany(u => u.FriendRequestsAccepted)
+                .Map(m =>
+                {
+                    m.ToTable("UserFriends");
+                    m.MapLeftKey("RequestedUserId");
+                    m.MapRightKey("AcceptedUserId");
+                });
         }
     }
 }
