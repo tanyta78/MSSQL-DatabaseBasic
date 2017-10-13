@@ -51,15 +51,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201710110725423_InitialCreate.cs" />
+    <Compile Include="Migrations\201710110725423_InitialCreate.Designer.cs">
+      <DependentUpon>201710110725423_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710110851540_AllChanged.cs" />
+    <Compile Include="Migrations\201710110851540_AllChanged.Designer.cs">
+      <DependentUpon>201710110851540_AllChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Town.cs" />
+    <Compile Include="MyInitializer.cs" />
     <Compile Include="RelationLiveContext.cs" />
-    <Compile Include="SrartUp.cs" />
+    <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710110725423_InitialCreate.resx">
+      <DependentUpon>201710110725423_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710110851540_AllChanged.resx">
+      <DependentUpon>201710110851540_AllChanged.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

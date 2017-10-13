@@ -66,6 +66,8 @@
     <Compile Include="EmployeesS.cs">
       <DependentUpon>SoftUniContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="KeyboardController.cs" />
+    <Compile Include="Paginator.cs" />
     <Compile Include="Project.cs">
       <DependentUpon>SoftUniContext.tt</DependentUpon>
     </Compile>

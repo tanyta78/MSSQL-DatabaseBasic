@@ -1,42 +1,50 @@
-SELECT *
-INTO ItemsShouldBuy
-FROM Items
-WHERE (Items.Id BETWEEN 251 AND 299) OR (Items.Id BETWEEN 501 AND 539)
+BEGIN TRANSACTION
 
-SELECT 
-Users.Id as [UserId],
-Users.Username,
-Games.Name,
-UsersGames.Cash,
-UsersGames.Id as[UserGameId],
-Level
-INTO Buyers
-FROM UsersGames
-JOIN Users ON Users.Id=UsersGames.UserId
-JOIN Games ON UsersGames.GameId=Games.Id
-WHERE Users.Username IN ('baleremuda','loosenoise', 'inguinalself', 'buildingdeltoid', 'monoxidecos' )
-AND Games.Name='Bali'
+DECLARE @Sum DECIMAL = (SELECT SUM(i.Price)
+					      FROM Items AS i
+						 WHERE MinLevel BETWEEN 11 AND 12)
 
-drop table Bills
+IF(SELECT Cash FROM UsersGames WHERE Id = 110) < @Sum
+BEGIN
+   ROLLBACK
+END
+ELSE 
+BEGIN
+	UPDATE UsersGames
+	   SET Cash -= @Sum
+	 WHERE Id = 110
 
-select 
-Buyers.UserGameId,
-ItemsShouldBuy.Id as [Item Id]
-into BuyersItems
-from Buyers
-join ItemsShouldBuy on Buyers.Level>ItemsShouldBuy.MinLevel
+INSERT INTO UserGameItems (UserGameId, ItemId)
+	 SELECT 110, Id 
+	   FROM Items 
+	  WHERE MinLevel BETWEEN 11 AND 12
+	 COMMIT
+END
 
-select
-UserGameId ,
-sum(Price)as Bill 
-into Bills
-from BuyersItems
-join ItemsShouldBuy on BuyersItems.[Item Id]=ItemsShouldBuy.Id
-group by UserGameId
+BEGIN TRANSACTION
 
-insert into UserGameItems(UserGameId,ItemId) 
-SELECT * from BuyersItems
+DECLARE @Sum2 DECIMAL = (SELECT SUM(i.Price)
+						   FROM Items i
+						  WHERE MinLevel BETWEEN 19 AND 21)
 
-UPDATE UsersGames
-SET Cash -= (SELECT bill FROM Bills)
-WHERE UsersGames.Id = (Bills.UserGameId)
+IF (SELECT Cash FROM UsersGames WHERE Id = 110) < @Sum2
+BEGIN
+	ROLLBACK
+END
+ELSE 
+BEGIN
+	UPDATE UsersGames
+	   SET Cash = Cash - @sum2
+	 WHERE Id = 110
+
+INSERT INTO UserGameItems (UserGameId, ItemId)
+     SELECT 110, Id 
+	   FROM Items 
+	  WHERE MinLevel BETWEEN 19 AND 21
+	 COMMIT
+END
+
+SELECT i.Name AS [Item Name] 
+  FROM UserGameItems ugi
+  JOIN Items i ON ugi.ItemId = i.Id
+WHERE ugi.UserGameId = 110

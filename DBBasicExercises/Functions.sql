@@ -91,46 +91,53 @@ BEGIN
 END 
 
 --Problem 8.	* Delete Employees and Departments
-ALTER TABLE Departments
-ALTER COLUMN ManagerID INT NULL
-
-DELETE FROM EmployeesProjects
-WHERE EmployeeID IN (
-			SELECT EmployeeID FROM Employees AS E
-			  JOIN Departments AS d
-			  ON E.DepartmentID=d.DepartmentID
-			WHERE D.Name IN ('Production','Production Control')
-			)
-
-UPDATE Employees
-SET ManagerID=NULL
-WHERE ManagerID IN (
-			SELECT EmployeeID FROM Employees AS E
-			  JOIN Departments AS d
-			  ON E.DepartmentID=d.DepartmentID
-			WHERE D.Name IN ('Production','Production Control')
-			)
-
-UPDATE Departments
-SET ManagerID=NULL
-WHERE ManagerID IN (
-			SELECT EmployeeID FROM Employees AS E
-			  JOIN Departments AS d
-			  ON E.DepartmentID=d.DepartmentID
-			WHERE D.Name IN ('Production','Production Control')
-			)
-
-DELETE FROM Employees
-WHERE EmployeeID IN(
-					SELECT EmployeeID FROM Employees AS E
-					  JOIN Departments AS d
-					  ON E.DepartmentID=d.DepartmentID
-					WHERE D.Name IN ('Production','Production Control')
-					)
-
-DELETE FROM Departments
-WHERE Name IN ('Production','Production Control')
-
+CREATE PROC usp_DeleteEmployeesFromDepartment(@departmentId INT)
+AS
+     BEGIN
+         ALTER TABLE Departments ALTER COLUMN ManagerID INT NULL;
+         DELETE FROM EmployeesProjects
+         WHERE EmployeeID IN
+         (
+             SELECT EmployeeID
+             FROM Employees AS E
+             WHERE E.DepartmentID = @departmentId
+         );
+         UPDATE Employees
+           SET
+               ManagerID = NULL
+         WHERE ManagerID IN
+         (
+             SELECT EmployeeID
+             FROM Employees AS E
+             WHERE E.DepartmentID = @departmentId
+         );
+         UPDATE Departments
+           SET
+               ManagerID = NULL
+         WHERE ManagerID IN
+         (
+             SELECT EmployeeID
+             FROM Employees AS E
+             WHERE E.DepartmentID = @departmentId
+         );
+         DELETE FROM Employees
+         WHERE EmployeeID IN
+         (
+             SELECT EmployeeID
+             FROM Employees AS E
+             WHERE E.DepartmentID = @departmentId
+         );
+         DELETE FROM Departments
+         WHERE Departments.DepartmentID IN
+         (
+             SELECT EmployeeID
+             FROM Employees AS E
+             WHERE E.DepartmentID = @departmentId
+         );
+         SELECT COUNT(*)
+         FROM Employees
+         WHERE Employees.DepartmentID = @departmentId;
+     END;
 --Problem 9.	Employees with Three Projects
 CREATE PROC usp_AssignProject(@EmployeeID INT, @ProjectID INT) AS
 	BEGIN TRANSACTION

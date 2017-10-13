@@ -11,6 +11,10 @@
 
         public string Text { get; set; }
 
-        public Student Student { get; set; }
+        public virtual Student Student { get; set; }
+               
+        public virtual Town Town { get; set; }
+
+       
     }
 }
