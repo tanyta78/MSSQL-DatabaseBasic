@@ -17,9 +17,7 @@ namespace Organazer.Data
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Email> Emails { get; set; }
         public virtual DbSet<Phone> Phones { get; set; }
-        // public virtual DbSet<Person> People { get; set; }
-
-
+       
     }
 
 

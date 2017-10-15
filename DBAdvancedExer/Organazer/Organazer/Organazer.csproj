@@ -49,8 +49,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\Command.cs" />
+    <Compile Include="Enumerations\UserResponse.cs" />
+    <Compile Include="Input\KeyboardInput.cs" />
+    <Compile Include="Organazer.cs" />
+    <Compile Include="ScreenControllers\ContactDetailsController.cs" />
+    <Compile Include="ScreenControllers\ContactsController.cs" />
+    <Compile Include="ScreenControllers\EditBoxConroller.cs" />
+    <Compile Include="ScreenControllers\HomeScreenController.cs" />
+    <Compile Include="ScreenControllers\ScreenController.cs" />
+    <Compile Include="ScreenElements\Composite\ContactList.cs" />
+    <Compile Include="ScreenElements\Composite\Grid.cs" />
+    <Compile Include="ScreenElements\Composite\ListBox.cs" />
+    <Compile Include="ScreenElements\Composite\Menu.cs" />
+    <Compile Include="ScreenElements\Composite\ScrollList.cs" />
+    <Compile Include="ScreenElements\Composite\TextBox.cs" />
+    <Compile Include="ScreenElements\EditBox.cs" />
+    <Compile Include="ScreenElements\Label.cs" />
+    <Compile Include="ScreenElements\Layout.cs" />
+    <Compile Include="ScreenElements\ListItem.cs" />
+    <Compile Include="ScreenElements\MenuItem.cs" />
+    <Compile Include="ScreenElements\Composite\Paragraph.cs" />
+    <Compile Include="ScreenElements\ScreenElement.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\Composer.cs" />
+    <Compile Include="Utility\ConsoleConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -66,5 +90,6 @@
       <Name>Organazer.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
