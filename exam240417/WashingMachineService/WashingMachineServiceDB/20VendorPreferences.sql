@@ -1,13 +1,23 @@
-SELECT
-CONCAT(Mechanics.FirstName,' ',Mechanics.LastName) AS Mechanic,
-Vendors.Name as Vendor,
-SUM(OrderParts.Quantity) AS Parts,
-RANK() OVER (PARTITION BY CONCAT(Mechanics.FirstName,' ',Mechanics.LastName) ORDER BY SUM(OrderParts.Quantity)) as PreferenceRank
-from Mechanics
-JOIN Jobs ON Jobs.MechanicId=Mechanics.MechanicId
-JOIN Orders ON Orders.JobId=Jobs.JobId
-JOIN OrderParts ON OrderParts.OrderId=Orders.OrderId
-JOIN Parts ON OrderParts.PartId=Parts.PartId
-JOIN Vendors ON Parts.VendorId=Vendors.VendorId 
-GROUP BY CONCAT(Mechanics.FirstName,' ',Mechanics.LastName),Vendors.Name
-ORDER BY Mechanic,Parts desc,Vendor
+WITH CTE_VendorPreference
+AS
+(
+		  SELECT	M.MechanicId,
+				V.VendorId,
+				SUM(OP.Quantity) AS VendorsItems
+		  FROM Mechanics as M 
+			 JOIN Jobs J ON J.MechanicId=M.MechanicId
+			 JOIN Orders O ON O.JobId=J.JobId
+			 JOIN OrderParts OP ON OP.OrderId=O.OrderId
+			 JOIN Parts AS P ON P.PartId=OP.PartId
+			 JOIN Vendors AS V ON V.VendorId=P.VendorId
+		  GROUP BY M.MechanicId,V.VendorId
+)
+
+SELECT  M.FirstName+' '+M.LastName AS Mechanic,
+	   v.Name as Vendor,
+	   C.VendorsItems AS Parts,
+	   CAST(CAST(CAST(VendorsItems as DECIMAL(6,2))/(SELECT SUM(VendorsItems)FROM CTE_VendorPreference WHERE MechanicId=C.MechanicId)*100 AS INT)AS VARCHAR(20))+'%' AS Preference
+FROM CTE_VendorPreference AS C
+JOIN Mechanics M ON M.MechanicId=C.MechanicId
+JOIN Vendors V ON V.VendorId=C.VendorId
+ORDER BY Mechanic,Parts DESC,Vendor
