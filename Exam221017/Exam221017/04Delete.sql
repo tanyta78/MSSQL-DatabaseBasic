@@ -1,0 +1,2 @@
+DELETE FROM Reports
+WHERE StatusId=(SELECT Id FROM STATUS WHERE Label='blocked')
